@@ -1,8 +1,8 @@
 {
-	"name": "xlsx-styles",
-	"version": "0.14.3",
-	"author": "sheetjs",
-	"description": "xlsx + style = xlsx-styles",
+	"name": "xlsx-color",
+	"version": "0.14.30",
+	"author": "birnfly",
+	"description": "xlsx + style = xlsx-color",
 	"keywords": [
 		"excel",
 		"xls",

@@ -1,3 +1,5 @@
+该项目fork自[SheetJS js-xlsx](http://sheetjs.com)，并加入了样式功能，代码有参考xlsx-style项目。
+
 # [SheetJS js-xlsx](http://sheetjs.com)
 
 Parser and writer for various spreadsheet formats.  Pure-JS cleanroom
