@@ -1,12 +1,13 @@
 {
-	"name": "xlsx",
+	"name": "xlsx-styles",
 	"version": "0.14.3",
 	"author": "sheetjs",
-	"description": "SheetJS Spreadsheet data parser and writer",
+	"description": "xlsx + style = xlsx-styles",
 	"keywords": [
 		"excel",
 		"xls",
 		"xlsx",
+		"xlsx-style",
 		"xlsb",
 		"xlsm",
 		"ods",
@@ -15,7 +16,10 @@
 		"dif",
 		"sylk",
 		"office",
-		"spreadsheet"
+		"spreadsheet",
+		"font",
+		"color",
+		"bgColor"
 	],
 	"bin": {
 		"xlsx": "./bin/xlsx.njs"
@@ -49,7 +53,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/SheetJS/js-xlsx.git"
+		"url": "git://github.com/birnfly/js-xlsx.git"
 	},
 	"scripts": {
 		"pretest": "git submodule init && git submodule update",
@@ -72,7 +76,7 @@
 	},
 	"homepage": "http://sheetjs.com/opensource",
 	"bugs": {
-		"url": "https://github.com/SheetJS/js-xlsx/issues"
+		"url": "https://github.com/birnfly/js-xlsx/pulls"
 	},
 	"license": "Apache-2.0",
 	"engines": {
