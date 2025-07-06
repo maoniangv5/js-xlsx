@@ -20381,12 +20381,12 @@ function write_zip_type(wb, opts) {
 	var o = opts||{};
 	var style_builder  = new StyleBuilder(opts);
 	var z = write_zip(wb, o);
+	console.log('z',z)
 	var oopts = {};
 	var ftype = has_buf ? "nodebuffer" : (typeof Uint8Array !== "undefined" ? "array" : "string");
 	if (o.compression) oopts.compression = 'DEFLATE';
 	if (o.password) oopts.type = ftype;
 	else switch(o.type) {
-		case "buffer":
 		case "base64": oopts.type = "base64"; break;
 		case "binary": oopts.type = "string"; break;
 		case "string": throw new Error("'string' output type invalid for '" + o.bookType + "' files");
