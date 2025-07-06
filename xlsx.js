@@ -2947,7 +2947,6 @@ function parsexmlbool(value) {
 }
 
 var utf8read = function(orig) {
-	console.log('utf8read orig',orig)
 	var out = "", i = 0, c = 0, d = 0, e = 0, f = 0, w = 0;
 	while (i < orig.length) {
 		c = orig.charCodeAt(i++);
@@ -2961,7 +2960,6 @@ var utf8read = function(orig) {
 		out += String.fromCharCode(0xD800 + ((w>>>10)&1023));
 		out += String.fromCharCode(0xDC00 + (w&1023));
 	}
-	console.log('utf8read out',out)
 	return out;
 };
 
@@ -20380,8 +20378,8 @@ function write_cfb_ctr(cfb, o) {
 function write_zip_type(wb, opts) {
 	var o = opts||{};
 	var style_builder  = new StyleBuilder(opts);
+	console.log(style_builder)
 	var z = write_zip(wb, o);
-	console.log('z',z)
 	var oopts = {};
 	var ftype = has_buf ? "nodebuffer" : (typeof Uint8Array !== "undefined" ? "array" : "string");
 	if (o.compression) oopts.compression = 'DEFLATE';
@@ -20394,16 +20392,7 @@ function write_zip_type(wb, opts) {
 		case "file": oopts.type = ftype; break;
 		default: throw new Error("Unrecognized type " + o.type);
 	}	
-	console.log('write_zip_type',o)
-	console.log('write_zip_type',o.type == "string")
-	console.log({ fileType: "zip", type: { "nodebuffer": "buffer", "string": "binary" }[oopts.type] || oopts.type, compression: !!o.compression })
-	console.log('*****************************')
-	console.log('z.FullPaths',z.FullPaths)
-	console.log('z.generate(oopts)',z.generate(oopts))
 	var out = z.FullPaths ? CFB.write(z, { fileType: "zip", type: { "nodebuffer": "buffer", "string": "binary" }[oopts.type] || oopts.type, compression: !!o.compression }) : z.generate(oopts);
-	console.log('write_zip_type',out)
-	console.log('write_zip_type',o)
-	console.log('write_zip_type',o.type == "string")
 	if (typeof out == "string") {
 		if (o.type == "binary" || o.type == "base64") return out;
 		out = new Uint8Array(s2ab(out));
@@ -20411,11 +20400,6 @@ function write_zip_type(wb, opts) {
 	
 	if(o.password && typeof encrypt_agile !== 'undefined') return write_cfb_ctr(encrypt_agile(out, o.password), o);
 	if(o.type === "file") return write_dl(o.file, out);
-	console.log('+++++++++++++++++++++++++++')
-	
-	console.log('write_zip_type',out)
-	console.log('write_zip_type',o)
-	console.log('write_zip_type',o.type == "string")
 	return o.type == "string" ? utf8read(out) : out;
 }
 
