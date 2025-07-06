@@ -20394,21 +20394,18 @@ function write_zip_type(wb, opts) {
 		case "file": oopts.type = ftype; break;
 		default: throw new Error("Unrecognized type " + o.type);
 	}	
-	console.log('write_zip_type',out)
 	console.log('write_zip_type',o)
 	console.log('write_zip_type',o.type == "string")
 	console.log({ fileType: "zip", type: { "nodebuffer": "buffer", "string": "binary" }[oopts.type] || oopts.type, compression: !!o.compression })
 	console.log('*****************************')
+	console.log('write_zip_type',z)
 	var out = z.FullPaths ? CFB.write(z, { fileType: "zip", type: { "nodebuffer": "buffer", "string": "binary" }[oopts.type] || oopts.type, compression: !!o.compression }) : z.generate(oopts);
 	console.log('write_zip_type',out)
 	console.log('write_zip_type',o)
 	console.log('write_zip_type',o.type == "string")
-	console.log(Deno)
-	if (typeof Deno !== "undefined") {
-		if (typeof out == "string") {
-			if (o.type == "binary" || o.type == "base64") return out;
-			out = new Uint8Array(s2ab(out));
-		}
+	if (typeof out == "string") {
+		if (o.type == "binary" || o.type == "base64") return out;
+		out = new Uint8Array(s2ab(out));
 	}
 	
 	if(o.password && typeof encrypt_agile !== 'undefined') return write_cfb_ctr(encrypt_agile(out, o.password), o);
