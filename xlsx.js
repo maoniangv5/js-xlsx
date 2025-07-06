@@ -1942,6 +1942,8 @@ function a2s(o) {
 
 function write(cfb, options) {
 	var o = _write(cfb, options);
+	console.log(o)
+	console.log(options)
 	switch(options && options.type) {
 		case "file": get_fs(); fs.writeFileSync(options.filename, (o)); return o;
 		case "binary": return a2s(o);
