@@ -20379,10 +20379,12 @@ function write_cfb_ctr(cfb, o) {
 /*global encrypt_agile */
 function write_zip_type(wb, opts) {
 	var o = opts||{};
+	console.log(o)
 	var style_builder  = new StyleBuilder(opts);
-
 	var z = write_zip(wb, o);
+	console.log(o)
 	var oopts = {};
+	console.log(o)
 	if(o.compression) oopts.compression = 'DEFLATE';
 	if(o.password) oopts.type = has_buf ? "nodebuffer" : "string";
 	else switch(o.type) {
@@ -20393,6 +20395,7 @@ function write_zip_type(wb, opts) {
 		case "file": oopts.type = has_buf ? "nodebuffer" : "string"; break;
 		default: throw new Error("Unrecognized type " + o.type);
 	}
+	console.log(oopts)
 	var out = z.generate(oopts);
 	if(o.password && typeof encrypt_agile !== 'undefined') return write_cfb_ctr(encrypt_agile(out, o.password), o);
 	if(o.type === "file") return write_dl(o.file, out);
