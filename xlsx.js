@@ -20456,6 +20456,7 @@ function write_binary_type(out, opts) {
 function writeSync(wb, opts) {
 	check_wb(wb);
 	var o = opts||{};
+	console.log(o)
 	if(o.type == "array") { o.type = "binary"; var out = (writeSync(wb, o)); o.type = "array"; return s2ab(out); }
 	switch(o.bookType || 'xlsb') {
 		case 'xml':
