@@ -2946,7 +2946,8 @@ function parsexmlbool(value) {
 	}
 }
 
-var utf8read = function utf8reada(orig) {
+var utf8read = function(orig) {
+	console.log('utf8read orig',orig)
 	var out = "", i = 0, c = 0, d = 0, e = 0, f = 0, w = 0;
 	while (i < orig.length) {
 		c = orig.charCodeAt(i++);
@@ -2960,6 +2961,7 @@ var utf8read = function utf8reada(orig) {
 		out += String.fromCharCode(0xD800 + ((w>>>10)&1023));
 		out += String.fromCharCode(0xDC00 + (w&1023));
 	}
+	console.log('utf8read out',out)
 	return out;
 };
 
