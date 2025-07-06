@@ -20397,11 +20397,13 @@ function write_zip_type(wb, opts) {
 	console.log('write_zip_type',out)
 	console.log('write_zip_type',o)
 	console.log('write_zip_type',o.type == "string")
+	console.log({ fileType: "zip", type: { "nodebuffer": "buffer", "string": "binary" }[oopts.type] || oopts.type, compression: !!o.compression })
 	console.log('*****************************')
 	var out = z.FullPaths ? CFB.write(z, { fileType: "zip", type: { "nodebuffer": "buffer", "string": "binary" }[oopts.type] || oopts.type, compression: !!o.compression }) : z.generate(oopts);
 	console.log('write_zip_type',out)
 	console.log('write_zip_type',o)
 	console.log('write_zip_type',o.type == "string")
+	console.log(Deno)
 	if (typeof Deno !== "undefined") {
 		if (typeof out == "string") {
 			if (o.type == "binary" || o.type == "base64") return out;
