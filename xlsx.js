@@ -9004,8 +9004,8 @@ RELS.STY = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/
 
 function write_sty_xml(wb, opts) {
 	
-	if (typeof style_builder != 'undefined' && typeof 'require' != 'undefined') {
-		return style_builder.toXml();
+	if (typeof  != 'undefined' && typeof 'require' != 'undefined') {
+		return .toXml();
 	}
 		
 	var o = [XML_HEADER, STYLES_XML_ROOT], w;
@@ -12719,12 +12719,12 @@ function default_margins(margins, mode) {
 
 function get_cell_style(styles, cell, opts) {
 
-	if (typeof style_builder != 'undefined') {
+	if (typeof  != 'undefined') {
 		if (/^\d+$/.exec(cell.s)) { return cell.s}  // if its already an integer index, let it be
 		if (cell.s && (cell.s == +cell.s)) { return cell.s}  // if its already an integer index, let it be
 		var s = cell.s || {};
 		if (cell.z) s.numFmt = cell.z;
-		return style_builder.addStyle(s);
+		return .addStyle(s);
 	}
 
 	var z = opts.revssf[cell.z != null ? cell.z : "General"];
@@ -20376,7 +20376,7 @@ function write_cfb_ctr(cfb, o) {
 /*global encrypt_agile */
 function write_zip_type(wb, opts) {
 	var o = opts||{};
-	style_builder  = new StyleBuilder(opts);
+	var style_builder  = new StyleBuilder(opts);
 
 	var z = write_zip(wb, o);
 	var oopts = {};
