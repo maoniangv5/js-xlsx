@@ -9004,8 +9004,8 @@ RELS.STY = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/
 
 function write_sty_xml(wb, opts) {
 	
-	if (typeof  != 'undefined' && typeof 'require' != 'undefined') {
-		return .toXml();
+	if (typeof style_builder != 'undefined' && typeof 'require' != 'undefined') {
+		return style_builder.toXml();
 	}
 		
 	var o = [XML_HEADER, STYLES_XML_ROOT], w;
@@ -9022,6 +9022,7 @@ function write_sty_xml(wb, opts) {
 	if(o.length>2){ o[o.length] = ('</styleSheet>'); o[1]=o[1].replace("/>",">"); }
 	return o.join("");
 }
+
 /* [MS-XLSB] 2.4.657 BrtFmt */
 function parse_BrtFmt(data, length) {
 	var numFmtId = data.read_shift(2);
@@ -12719,12 +12720,12 @@ function default_margins(margins, mode) {
 
 function get_cell_style(styles, cell, opts) {
 
-	if (typeof  != 'undefined') {
+	if (typeof style_builder != 'undefined') {
 		if (/^\d+$/.exec(cell.s)) { return cell.s}  // if its already an integer index, let it be
 		if (cell.s && (cell.s == +cell.s)) { return cell.s}  // if its already an integer index, let it be
 		var s = cell.s || {};
 		if (cell.z) s.numFmt = cell.z;
-		return .addStyle(s);
+		return style_builder.addStyle(s);
 	}
 
 	var z = opts.revssf[cell.z != null ? cell.z : "General"];
