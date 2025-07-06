@@ -3589,6 +3589,20 @@ function sheet_add_aoa(_ws, data, opts) {
 	for(var R = 0; R != data.length; ++R) {
 		if(!data[R]) continue;
 		if(!Array.isArray(data[R])) throw new Error("aoa_to_sheet expects an array of arrays");
+		const defaultCellStyle = {
+			font: { name: "宋体", sz: 11, color: { rgb: "ff0000" } },
+			border: {
+				color: { auto: 1 }
+			},
+			alignment: {
+				/// 自动换行
+				wrapText: 1,
+				// 居中
+				horizontal: "center",
+				vertical: "center",
+				indent: 0
+			}
+		}
 		for(var C = 0; C != data[R].length; ++C) {
 			if(typeof data[R][C] === 'undefined') continue;
 			var cell = ({v: data[R][C] });
@@ -3610,6 +3624,8 @@ function sheet_add_aoa(_ws, data, opts) {
 				}
 				else cell.t = 's';
 			}
+			cell.s = defaultCellStyle;
+
 			if(dense) {
 				if(!ws[__R]) ws[__R] = [];
 				ws[__R][__C] = cell;
